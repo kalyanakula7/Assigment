@@ -1,0 +1,79 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="class">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="type" type="xs:string" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="block">
+                <xs:complexType>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="declare"/>
+                    <xs:element ref="assign"/>
+                    <xs:element ref="invoke"/>
+                    <xs:element ref="return"/>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+              <xs:attribute name="name" type="xs:string" use="required"/>
+              <xs:attribute name="returnType" type="xs:string" use="required"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="declare">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="create"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="assign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="argument">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="variable">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="literal">
+                <xs:complexType>
+                  <xs:attribute name="type" type="xs:string" use="required"/>
+                  <xs:attribute name="value" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element ref="binary"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="target" type="xs:string" use="required"/>
+      <xs:attribute name="field" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="invoke">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="argument">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="variable">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="literal

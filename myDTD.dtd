@@ -1,0 +1,31 @@
+<!DOCTYPE classes SYSTEM "myDTD.dtd">
+<!ELEMENT classes (class*)>
+<!ELEMENT class (field*, constructor*, method*)>
+<!ATTLIST class name CDATA #REQUIRED>
+<!ELEMENT field EMPTY>
+<!ATTLIST field name CDATA #REQUIRED
+              type CDATA #REQUIRED
+              access CDATA #REQUIRED>
+<!ELEMENT constructor (parameter*, block)>
+<!ATTLIST constructor name CDATA #REQUIRED>
+<!ELEMENT parameter EMPTY>
+<!ATTLIST parameter type CDATA #REQUIRED
+                  name CDATA #REQUIRED>
+<!ELEMENT block (declare*, invoke*)>
+<!ELEMENT declare (create)>
+<!ATTLIST declare type CDATA #REQUIRED
+                  name CDATA #REQUIRED>
+<!ELEMENT create (argument*)>
+<!ATTLIST create constructor CDATA #REQUIRED>
+<!ELEMENT invoke (argument*)>
+<!ATTLIST invoke target CDATA #REQUIRED
+                  method CDATA #REQUIRED>
+<!ELEMENT argument (literal | variable)>
+<!ELEMENT literal EMPTY>
+<!ATTLIST literal type CDATA #REQUIRED
+                  value CDATA #REQUIRED>
+<!ELEMENT variable EMPTY>
+<!ATTLIST variable name CDATA #REQUIRED>
+<!ELEMENT method (parameter*, block)>
+<!ATTLIST method name CDATA #REQUIRED
+                returnType CDATA #REQUIRED>

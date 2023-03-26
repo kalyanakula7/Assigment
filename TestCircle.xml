@@ -1,0 +1,112 @@
+<class name="TestCircle">
+  <method name="main" returnType="void">
+    <parameter type="String[]" name="args"/>
+    <block>
+      <declare type="Circle" name="x">
+        <create constructor="Circle">
+          <argument type="double" value="1.0"/>
+        </create>
+      </declare>
+      <invoke target="System.out" method="println">
+        <argument>
+          <variable name="x"/>
+        </argument>
+      </invoke>
+      <declare type="Circle" name="y">
+        <create constructor="Circle"/>
+      </declare>
+      <invoke target="System.out" method="println">
+        <argument>
+          <variable name="y"/>
+        </argument>
+      </invoke>
+      <invoke target="y" method="setRadius">
+        <argument>
+          <literal type="double" value="2.0"/>
+        </argument>
+      </invoke>
+      <invoke target="System.out" method="println">
+        <argument>
+          <binary operator="+">
+            <binary operator="+">
+              <variable name="y"/>
+              <literal type="String" value=" has area "/>
+            </binary>
+            <invoke target="y" method="area"/>
+          </binary>
+        </argument>
+      </invoke>
+    </block>
+  </method>
+</class>
+<class name="Circle">
+  <field name="radius" type="double" access="private"/>
+  <field name="PI" type="double" access="private" constant="true" value="3.14"/>
+  <constructor name="Circle">
+    <parameter type="double" name="radius"/>
+    <block>
+      <invoke target="System.out" method="println">
+        <argument>
+          <literal type="String" value="Enter constructor Circle("/>
+          <binary operator="+">
+            <variable name="radius"/>
+            <literal type="String" value=")"/>
+          </binary>
+        </argument>
+      </invoke>
+      <assign target="this" field="radius">
+        <argument>
+          <variable name="radius"/>
+        </argument>
+      </assign>
+    </block>
+  </constructor>
+  <constructor name="Circle">
+    <block>
+      <invoke target="this" method="Circle">
+        <argument>
+          <literal type="double" value="0.0"/>
+        </argument>
+      </invoke>
+    </block>
+  </constructor>
+  <method name="setRadius" returnType="void">
+    <parameter type="double" name="radius"/>
+    <block>
+      <assign target="this" field="radius">
+        <argument>
+          <variable name="radius"/>
+        </argument>
+      </assign>
+    </block>
+  </method>
+  <method name="getRadius" returnType="double">
+    <block>
+      <return>
+        <variable name="radius"/>
+      </return>
+    </block>
+  </method>
+  <method name="area" returnType="double">
+    <block>
+      <return>
+        <binary operator="*">
+          <binary operator="*">
+            <variable name="PI"/>
+            <binary operator="*">
+              <variable name="radius"/>
+              <variable name="radius"/>
+            </binary>
+          </binary>
+        </binary>
+      </return>
+    </block>
+  </method>
+  <method name="toString" returnType="String">
+    <block>
+      <return>
+        <binary operator="+">
+          <literal type="String" value="Circle("/>
+          <variable name="radius"/>
+          <literal type="String" value=")"/>
+        </binary>
